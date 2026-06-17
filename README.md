@@ -53,7 +53,7 @@ Pure Kotlin — no Android imports. Contains:
 
 ### Utils
 
-- **`SharedPrefHelper`** — DataStore-backed: auth token, login session, dark mode, language, biometric flag
+- **`DataStoreHelper`** — DataStore-backed: auth token, login session, dark mode, language, biometric flag
 - **`AppBiometricManager`** — abstracts `BiometricPrompt` behind a clean callback so ViewModels never reference `FragmentActivity` directly
 
 ---
@@ -177,7 +177,7 @@ app/src/main/java/com/task/ibiproducts/
 ├── utils/
 │   ├── AppBiometricManager.kt
 │   ├── DispatcherQualifier.kt
-│   └── SharedPrefHelper.kt
+│   └── DataStoreHelper.kt
 ├── ui/theme/
 ├── AppNavGraph.kt
 ├── IbiProductsApp.kt
@@ -222,7 +222,7 @@ Lastly, I reviewed all AI-generated code line by line before inclusion to ensure
 - All architectural decisions and layer boundaries
 - Decision to keep `FavoriteEntity` as a separate table after evaluating the `PagingSource` invalidation problem hands-on
 - `ProductPagingSource` logic — network-first, Room cache fallback, offline detection
-- `SharedPrefHelper` DataStore key design and synchronous `getAuthToken()` via `runBlocking` for `AuthInterceptor`
+- `DataStoreHelper` DataStore key design and synchronous `getAuthToken()` via `runBlocking` for `AuthInterceptor`
 - Biometric session persistence fix — re-saving login session after biometric success so the app remembers on next open
 - `getProductById` logic — serving locally modified products from Room without overwriting with network data
 - Preserving locally modified products during network page fetches in `ProductPagingSource`
