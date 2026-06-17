@@ -81,6 +81,19 @@ Pure Kotlin — no Android imports. Contains:
 
 ---
 
+## Screenshots
+
+<p align="center">
+  <img src="screenshots/3 Products screen.png" width="200"/>
+  <img src="screenshots/5 Favorites screen.png" width="200"/>
+  <img src="screenshots/8 Add Product.png" width="200"/>
+  <img src="screenshots/13 Settings screen in Hebrew.png" width="200"/>
+</p>
+
+> More screenshots available in the [`screenshots/`](screenshots/) folder.
+
+---
+
 ## Tech Stack
 
 | Category | Library |
