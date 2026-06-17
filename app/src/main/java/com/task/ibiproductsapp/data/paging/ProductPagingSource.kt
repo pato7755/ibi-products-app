@@ -51,7 +51,7 @@ class ProductPagingSource(
             }
 
             if (response.isSuccessful) {
-                val body = response.body()!!
+                val body = response.body() ?: return LoadResult.Error(Exception("Empty response body"))
                 val dtos = body.products
 
                 // Cache network results to Room

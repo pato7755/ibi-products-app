@@ -3,7 +3,6 @@ package com.task.ibiproductsapp.presentation.login.favorite
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.task.ibiproductsapp.di.IoDispatcher
-import com.task.ibiproductsapp.domain.model.Product
 import com.task.ibiproductsapp.domain.usecase.AddFavoriteUseCase
 import com.task.ibiproductsapp.domain.usecase.GetFavoritesUseCase
 import com.task.ibiproductsapp.domain.usecase.RemoveFavoriteUseCase
@@ -22,7 +21,6 @@ import javax.inject.Inject
 class FavoritesViewModel @Inject constructor(
     private val getFavoritesUseCase: GetFavoritesUseCase,
     private val removeFavoriteUseCase: RemoveFavoriteUseCase,
-    private val addFavoriteUseCase: AddFavoriteUseCase,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 

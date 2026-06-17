@@ -1,10 +1,8 @@
 package com.task.ibiproductsapp.data.repository
 
-import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.map
 import com.task.ibiproductsapp.common.Constants
 import com.task.ibiproductsapp.common.NetworkResult
 import com.task.ibiproductsapp.common.ParseErrorMessage
@@ -59,9 +57,13 @@ class ProductRepositoryImpl @Inject constructor(
 
             val response = apiService.getProductById(id)
             if (response.isSuccessful) {
-                val dto = response.body()!!
+                val dto = response.body()
+                    ?: return NetworkResult.Error("Empty response from server")
                 productDao.upsertProduct(dto.toEntity())
-                NetworkResult.Success(productDao.getProductById(id)!!.toDomain())
+
+                val entity = productDao.getProductById(id)
+                    ?: return NetworkResult.Error("Product not found after save")
+                NetworkResult.Success(entity.toDomain())
             } else {
                 val cached = productDao.getProductById(id)
                 if (cached != null) {
@@ -133,7 +135,8 @@ class ProductRepositoryImpl @Inject constructor(
         return try {
             val response = apiService.getProductById(id)
             if (response.isSuccessful) {
-                val dto = response.body()!!
+                val dto = response.body()
+                    ?: return NetworkResult.Error("Empty response from server")
                 productDao.upsertProduct(dto.toEntity())
                 NetworkResult.Success(Unit)
             } else {
@@ -155,7 +158,8 @@ class ProductRepositoryImpl @Inject constructor(
                     skip = skip
                 )
                 if (response.isSuccessful) {
-                    val body = response.body()!!
+                    val body = response.body()
+                        ?: return NetworkResult.Error("Empty response from server")
                     total = body.total
                     productDao.upsertProducts(body.products.map { it.toEntity() })
                     skip += Constants.PAGE_SIZE

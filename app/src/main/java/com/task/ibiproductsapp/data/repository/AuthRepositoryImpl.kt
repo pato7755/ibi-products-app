@@ -24,7 +24,9 @@ class AuthRepositoryImpl @Inject constructor(
                 )
             )
             if (response.isSuccessful) {
-                NetworkResult.Success(response.body()!!.toDomain())
+                val body = response.body()
+                    ?: return NetworkResult.Error("Empty response from server")
+                NetworkResult.Success(body.toDomain())
             } else {
                 val errorBody = response.errorBody()?.string() ?: ""
                 NetworkResult.Error(ParseErrorMessage.parseErrorMessage(errorBody))

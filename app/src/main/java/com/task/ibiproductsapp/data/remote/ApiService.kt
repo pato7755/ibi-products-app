@@ -2,7 +2,6 @@ package com.task.ibiproductsapp.data.remote
 
 import com.task.ibiproductsapp.data.remote.dto.request.LoginRequestDto
 import com.task.ibiproductsapp.data.remote.dto.request.ProductDto
-import com.task.ibiproductsapp.data.remote.dto.response.CategoriesResponseDto
 import com.task.ibiproductsapp.data.remote.dto.response.LoginResponseDto
 import com.task.ibiproductsapp.data.remote.dto.response.ProductsResponseDto
 import retrofit2.Response
@@ -37,9 +36,6 @@ interface ApiService {
 
     @GET("products/{id}")
     suspend fun getProductById(@Path("id") id: Int): Response<ProductDto>
-
-    @GET("products/categories")
-    suspend fun getCategories(): Response<List<CategoriesResponseDto>>
 
     @GET("products/category/{category}")
     suspend fun getProductsByCategory(

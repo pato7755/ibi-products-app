@@ -1,12 +1,10 @@
 package com.task.ibiproductsapp
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.getValue
-import androidx.core.view.WindowCompat.enableEdgeToEdge
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.task.ibiproductsapp.ui.theme.IbiProductsAppTheme
 import com.task.ibiproductsapp.util.DataStoreHelper
