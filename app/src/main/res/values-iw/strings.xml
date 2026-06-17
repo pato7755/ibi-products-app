@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="products">מוצרים</string>
+    <string name="favorites">מועדפים</string>
+    <string name="settings">הגדרות</string>
+    <string name="search_products">חפש מוצרים...</string>
+    <string name="all">הכל</string>
+    <string name="app_name">IbiProductsApp</string>
+    <string name="use_biometrics">Use Biometrics</string>
+    <string name="sign_in">Sign In</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="failed_to_load_products">Failed to load products</string>
+    <string name="deleted">deleted</string>
+    <string name="modified_locally">Modified locally</string>
+    <string name="delete">Delete</string>
+    <string name="this_product_has_been_locally_modified">This product has been locally modified</string>
+    <string name="description">Description</string>
+    <string name="tags">Tags</string>
+    <string name="error_loading_product">Error loading product</string>
+    <string name="product_detail">Product Detail</string>
+    <string name="are_you_sure_you_want_to_sign_out">Are you sure you want to sign out?</string>
+    <string name="sign_out">Sign out</string>
+    <string name="cancel">Cancel</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="language">Language</string>
+    <string name="security">Security</string>
+    <string name="biometric_login">Biometric login</string>
+    <string name="use_fingerprint_or_face_to_sign_in">Use fingerprint or face to sign in</string>
+    <string name="account">Account</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="add_product">Add Product</string>
+    <string name="brand">Brand</string>
+    <string name="category">Category</string>
+    <string name="stock">Stock</string>
+    <string name="price">Price *</string>
+    <string name="title">Title *</string>
+    <string name="locally_modified_tap_refresh_to_restore_api_data">Locally modified — tap refresh to restore API data</string>
+    <string name="edit_product">Edit Product</string>
+</resources>
