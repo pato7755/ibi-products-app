@@ -54,18 +54,25 @@ class ProductPagingSource(
                 val body = response.body()!!
                 val dtos = body.products
 
-                // Cache to Room for offline access
-                val existingModified = dtos.mapNotNull { dto ->
-                    val existing = productDao.getProductById(dto.id)
-                    if (existing?.isLocallyModified == true) existing else null
-                }.associateBy { it.id }
+                // Cache network results to Room
+                productDao.upsertProducts(dtos.map { it.toEntity() })
 
-                productDao.upsertProducts(dtos.map { dto ->
-                    existingModified[dto.id] ?: dto.toEntity()
-                })
+                // Merge local-only products on first page only to avoid duplicates
+                val localOnly = if (page == 0) {
+                    val networkIds = dtos.map { it.id }.toSet()
+                    productDao.getLocalProducts(
+                        searchQuery = searchQuery,
+                        category = category ?: ""
+                    ).filter { it.id !in networkIds }
+                } else {
+                    emptyList()
+                }
+
+                val merged = localOnly.map { it.toDomain() } +
+                        dtos.map { it.toEntity().toDomain() }
 
                 LoadResult.Page(
-                    data = dtos.map { it.toEntity().toDomain() },
+                    data = merged,
                     prevKey = if (page == 0) null else page - 1,
                     nextKey = if (dtos.isEmpty() || skip + dtos.size >= body.total) null else page + 1
                 )

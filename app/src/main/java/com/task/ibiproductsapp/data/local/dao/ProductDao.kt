@@ -55,11 +55,22 @@ interface ProductDao {
     WHERE (:searchQuery = '' OR title LIKE '%' || :searchQuery || '%')
     AND (:category = '' OR category = :category)
     LIMIT :limit OFFSET :skip
-""")
+    """)
     suspend fun getAllProducts(
         searchQuery: String,
         category: String,
         skip: Int,
         limit: Int
+    ): List<ProductEntity>
+
+    @Query("""
+    SELECT * FROM products
+    WHERE isLocallyModified = 1
+    AND (:searchQuery = '' OR title LIKE '%' || :searchQuery || '%')
+    AND (:category = '' OR category = :category)
+    """)
+    suspend fun getLocalProducts(
+        searchQuery: String,
+        category: String
     ): List<ProductEntity>
 }
