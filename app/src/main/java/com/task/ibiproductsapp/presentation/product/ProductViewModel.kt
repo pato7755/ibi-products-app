@@ -27,12 +27,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-data class SearchParams(
-    val searchQuery: String = "",
-    val category: String? = null,
-    val sortOption: String = "default"
-)
-
 @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
 @HiltViewModel
 class ProductViewModel @Inject constructor(
@@ -87,7 +81,7 @@ class ProductViewModel @Inject constructor(
         viewModelScope.launch {
             getFavoritesUseCase().collect { favorites ->
                 _productState.update {
-                    it.copy(favoriteIds = favorites.map { it.id }.toSet())
+                    it.copy(favoriteIds = favorites.map { it -> it.id }.toSet())
                 }
             }
         }
