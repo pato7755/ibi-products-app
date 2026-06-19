@@ -8,7 +8,7 @@
     <string name="products">Products</string>
     <string name="failed_to_load_products">Failed to load products</string>
     <string name="deleted">deleted</string>
-    <string name="search_products">Search products...</string>
+    <string name="search_products">Search products…</string>
     <string name="all">All</string>
     <string name="modified_locally">Modified locally</string>
     <string name="delete">Delete</string>
@@ -38,4 +38,22 @@
     <string name="title">Title *</string>
     <string name="locally_modified_tap_refresh_to_restore_api_data">Locally modified — tap refresh to restore API data</string>
     <string name="edit_product">Edit Product</string>
+    <string name="reset_to_api_data">Reset to API data</string>
+    <string name="back">Back</string>
+    <string name="removed_from_favorites">%1$s removed from favorites</string>
+    <string name="undo">Undo</string>
+    <string name="remove_from_favorites">Remove from favorites</string>
+    <string name="no_favorites_yet">No favorites yet</string>
+    <string name="tap_the_heart_on_any_product_to_save_it_here">Tap the heart on any product to save it here</string>
+    <string name="sign_in_to_continue">Sign in to continue</string>
+    <string name="hide_password">Hide password</string>
+    <string name="show_password">Show password</string>
+    <string name="sort">Sort</string>
+    <string name="clear_search">Clear search</string>
+    <string name="add_favorite">Add favorite</string>
+    <string name="more_options">More options</string>
+    <string name="retry">Retry</string>
+    <string name="toggle_favorite">Toggle favorite</string>
+    <string name="rating">%1$s rating</string>
+    <string name="in_stock">%1$d in stock</string>
 </resources>

@@ -37,14 +37,16 @@ fun AddEditProductScreen(
                 title = { Text(if (isEditMode) stringResource(R.string.edit_product) else stringResource(R.string.add_product)) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(
+                            R.string.back
+                        ))
                     }
                 },
                 actions = {
                     // Reset to API option only in edit mode for locally modified products
                     if (isEditMode && state.isLocallyModified) {
                         IconButton(onClick = viewModel::resetToApi) {
-                            Icon(Icons.Default.Refresh, contentDescription = "Reset to API data")
+                            Icon(Icons.Default.Refresh, contentDescription = stringResource(R.string.reset_to_api_data))
                         }
                     }
                 }

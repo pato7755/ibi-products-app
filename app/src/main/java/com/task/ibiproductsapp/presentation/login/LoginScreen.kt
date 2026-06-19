@@ -91,7 +91,7 @@ fun LoginScreen(
             )
 
             Text(
-                text = "Sign in to continue",
+                text = stringResource(R.string.sign_in_to_continue),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -131,7 +131,9 @@ fun LoginScreen(
                         Icon(
                             imageVector = if (state.showPassword) Icons.Default.VisibilityOff
                             else Icons.Default.Visibility,
-                            contentDescription = if (state.showPassword) "Hide password" else "Show password"
+                            contentDescription = if (state.showPassword) stringResource(R.string.hide_password) else stringResource(
+                                R.string.show_password
+                            )
                         )
                     }
                 },
@@ -205,12 +207,6 @@ fun LoginScreen(
             }
 
             Spacer(modifier = Modifier.height(16.dp))
-
-            Text(
-                text = "Test: username \"emilys\" | password \"emilyspass\"",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.outline
-            )
         }
     }
 }

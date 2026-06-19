@@ -83,7 +83,7 @@ fun ProductDetailScreen(
                 title = { Text(state.product?.title ?: stringResource(R.string.product_detail)) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.back))
                     }
                 },
                 actions = {
@@ -92,13 +92,13 @@ fun ProductDetailScreen(
                             Icon(
                                 imageVector = if (state.isFavorite) Icons.Default.Favorite
                                 else Icons.Default.FavoriteBorder,
-                                contentDescription = "Toggle favorite",
+                                contentDescription = stringResource(R.string.toggle_favorite),
                                 tint = if (state.isFavorite) MaterialTheme.colorScheme.error
                                 else MaterialTheme.colorScheme.onSurface
                             )
                         }
                         IconButton(onClick = { onEditClick(product.id) }) {
-                            Icon(Icons.Default.Edit, contentDescription = "Edit product")
+                            Icon(Icons.Default.Edit, contentDescription = stringResource(R.string.edit_product))
                         }
                     }
                 }
@@ -121,7 +121,7 @@ fun ProductDetailScreen(
                     ) {
                         Text(state.errorMessage ?: stringResource(R.string.error_loading_product))
                         Spacer(modifier = Modifier.height(8.dp))
-                        Button(onClick = viewModel::retry) { Text("Retry") }
+                        Button(onClick = viewModel::retry) { Text(stringResource(R.string.retry)) }
                     }
                 }
                 state.product != null -> {
@@ -194,12 +194,12 @@ private fun ProductDetailContent(product: Product) {
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
-                    text = "${String.format("%.1f", product.rating)} rating",
+                    text = stringResource(R.string.rating, String.format("%.1f", product.rating)),
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Text(
-                    text = "${product.stock} in stock",
+                    text = stringResource(R.string.in_stock, product.stock),
                     style = MaterialTheme.typography.bodyMedium,
                     color = if (product.stock > 10) MaterialTheme.colorScheme.secondary
                     else MaterialTheme.colorScheme.error

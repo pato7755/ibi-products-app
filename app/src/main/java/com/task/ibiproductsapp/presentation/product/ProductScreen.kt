@@ -75,7 +75,9 @@ fun ProductListScreen(
                     // Sort dropdown
                     Box {
                         IconButton(onClick = { showSortMenu = true }) {
-                            Icon(Icons.AutoMirrored.Filled.Sort, contentDescription = "Sort")
+                            Icon(Icons.AutoMirrored.Filled.Sort, contentDescription = stringResource(
+                                R.string.sort
+                            ))
                         }
                         DropdownMenu(
                             expanded = showSortMenu,
@@ -102,7 +104,7 @@ fun ProductListScreen(
         },
         floatingActionButton = {
             FloatingActionButton(onClick = onAddProductClick) {
-                Icon(Icons.Default.Add, contentDescription = "Add product")
+                Icon(Icons.Default.Add, contentDescription = stringResource(R.string.add_product))
             }
         },
         snackbarHost = { SnackbarHost(snackbarHostState) }
@@ -186,7 +188,7 @@ fun SearchBar(
         trailingIcon = {
             if (query.isNotBlank()) {
                 IconButton(onClick = { onQueryChange("") }) {
-                    Icon(Icons.Default.Clear, contentDescription = "Clear search")
+                    Icon(Icons.Default.Clear, contentDescription = stringResource(R.string.clear_search))
                 }
             }
         },
@@ -351,7 +353,8 @@ private fun ProductCard(
                     Icon(
                         imageVector = if (isFavorite) Icons.Default.Favorite
                         else Icons.Default.FavoriteBorder,
-                        contentDescription = if (isFavorite) "Remove favorite" else "Add favorite",
+                        contentDescription = if (isFavorite) stringResource(R.string.remove_from_favorites)
+                            else stringResource(R.string.add_favorite),
                         tint = if (isFavorite) MaterialTheme.colorScheme.error
                         else MaterialTheme.colorScheme.onSurface
                     )
@@ -362,7 +365,7 @@ private fun ProductCard(
                         onClick = { showMenu = true },
                         modifier = Modifier.size(32.dp)
                     ) {
-                        Icon(Icons.Default.MoreVert, contentDescription = "More options")
+                        Icon(Icons.Default.MoreVert, contentDescription = stringResource(R.string.more_options))
                     }
                     DropdownMenu(
                         expanded = showMenu,
@@ -391,7 +394,7 @@ private fun ErrorState(message: String, onRetry: () -> Unit) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(text = message, style = MaterialTheme.typography.bodyMedium)
             Spacer(modifier = Modifier.height(8.dp))
-            Button(onClick = onRetry) { Text("Retry") }
+            Button(onClick = onRetry) { Text(stringResource(R.string.retry)) }
         }
     }
 }

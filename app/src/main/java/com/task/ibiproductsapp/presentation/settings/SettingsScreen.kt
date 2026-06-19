@@ -29,8 +29,6 @@ fun SettingsScreen(
     val state by viewModel.settingsState.collectAsStateWithLifecycle()
     var showLogoutDialog by remember { mutableStateOf(false) }
 
-    val context = LocalContext.current
-
     fun applyLanguage(languageCode: String) {
         viewModel.setLanguage(languageCode)
         AppCompatDelegate.setApplicationLocales(
@@ -49,7 +47,7 @@ fun SettingsScreen(
                         showLogoutDialog = false
                         viewModel.logout(onLoggedOut)
                     }
-                ) { Text("Sign out") }
+                ) { Text(stringResource(R.string.sign_out)) }
             },
             dismissButton = {
                 TextButton(onClick = { showLogoutDialog = false }) { Text(stringResource(R.string.cancel)) }
