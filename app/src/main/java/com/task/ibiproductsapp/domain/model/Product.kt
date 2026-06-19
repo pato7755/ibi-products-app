@@ -13,6 +13,5 @@ data class Product(
     val thumbnail: String,
     val images: List<String>,
     val tags: List<String>,
-    val isFavorite: Boolean = false,
     val isLocallyModified: Boolean = false
 )

@@ -36,7 +36,6 @@ fun ProductEntity.toDomain(): Product = Product(
     thumbnail = thumbnail,
     images = images.split(",").filter { it.isNotBlank() },
     tags = tags.split(",").filter { it.isNotBlank() },
-    isFavorite = false,
     isLocallyModified = isLocallyModified
 )
 
