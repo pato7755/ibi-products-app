@@ -1,4 +1,4 @@
-package com.task.ibiproductsapp.presentation.login.addeditproduct
+package com.task.ibiproductsapp.presentation.addeditproduct
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

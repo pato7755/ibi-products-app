@@ -1,4 +1,4 @@
-package com.task.ibiproductsapp.presentation.login.favorite
+package com.task.ibiproductsapp.presentation.favorite
 
 import com.task.ibiproductsapp.domain.model.Product
 

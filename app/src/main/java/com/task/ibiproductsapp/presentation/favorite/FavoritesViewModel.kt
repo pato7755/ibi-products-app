@@ -1,9 +1,8 @@
-package com.task.ibiproductsapp.presentation.login.favorite
+package com.task.ibiproductsapp.presentation.favorite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.task.ibiproductsapp.di.IoDispatcher
-import com.task.ibiproductsapp.domain.usecase.AddFavoriteUseCase
 import com.task.ibiproductsapp.domain.usecase.GetFavoritesUseCase
 import com.task.ibiproductsapp.domain.usecase.RemoveFavoriteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

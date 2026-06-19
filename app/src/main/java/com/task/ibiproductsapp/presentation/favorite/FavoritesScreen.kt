@@ -1,4 +1,4 @@
-package com.task.ibiproductsapp.presentation.login.favorite
+package com.task.ibiproductsapp.presentation.favorite
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

@@ -1,4 +1,4 @@
-package com.task.ibiproductsapp.presentation.login.addeditproduct
+package com.task.ibiproductsapp.presentation.addeditproduct
 
 data class AddEditProductState(
     val productId: Int? = null, // null = add mode, non-null = edit mode
