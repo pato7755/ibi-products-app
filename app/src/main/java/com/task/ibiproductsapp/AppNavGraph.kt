@@ -1,5 +1,6 @@
 package com.task.ibiproductsapp
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -13,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
@@ -23,8 +25,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.task.ibiproductsapp.common.Routes
 import com.task.ibiproductsapp.presentation.login.LoginScreen
-import com.task.ibiproductsapp.presentation.login.addeditproduct.AddEditProductScreen
-import com.task.ibiproductsapp.presentation.login.favorite.FavoritesScreen
+import com.task.ibiproductsapp.presentation.addeditproduct.AddEditProductScreen
+import com.task.ibiproductsapp.presentation.favorite.FavoritesScreen
 import com.task.ibiproductsapp.presentation.product.ProductListScreen
 import com.task.ibiproductsapp.presentation.productdetail.ProductDetailScreen
 import com.task.ibiproductsapp.presentation.settings.SettingsScreen
@@ -50,8 +52,8 @@ fun AppNavGraph(isLoggedIn: Boolean) {
                 NavigationBar {
                     bottomNavItems.forEach { item ->
                         NavigationBarItem(
-                            icon = { Icon(item.icon, contentDescription = item.label) },
-                            label = { Text(item.label) },
+                            icon = { Icon(item.icon, contentDescription = stringResource(item.labelRes)) },
+                            label = { Text(stringResource(item.labelRes)) },
                             selected = currentDestination?.hierarchy?.any { it.route == item.route } == true,
                             onClick = {
                                 navController.navigate(item.route) {
@@ -130,8 +132,11 @@ fun AppNavGraph(isLoggedIn: Boolean) {
     }
 }
 
-sealed class BottomNavItem(val route: String, val label: String, val icon: androidx.compose.ui.graphics.vector.ImageVector) {
-    object Products : BottomNavItem(Routes.PRODUCTS, "Products", Icons.Default.Home)
-    object Favorites : BottomNavItem(Routes.FAVORITES, "Favorites", Icons.Default.Favorite)
-    object Settings : BottomNavItem(Routes.SETTINGS, "Settings", Icons.Default.Settings)
+sealed class BottomNavItem(
+    val route: String,
+    @StringRes val labelRes: Int,
+    val icon: androidx.compose.ui.graphics.vector.ImageVector) {
+    object Products : BottomNavItem(Routes.PRODUCTS, R.string.products, Icons.Default.Home)
+    object Favorites : BottomNavItem(Routes.FAVORITES, R.string.favorites, Icons.Default.Favorite)
+    object Settings : BottomNavItem(Routes.SETTINGS, R.string.settings, Icons.Default.Settings)
 }

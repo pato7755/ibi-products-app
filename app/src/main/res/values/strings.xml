@@ -12,6 +12,7 @@
     <string name="all">All</string>
     <string name="modified_locally">Modified locally</string>
     <string name="delete">Delete</string>
+    <string name="favorites">Favorites</string>
     <string name="this_product_has_been_locally_modified">This product has been locally modified</string>
     <string name="description">Description</string>
     <string name="tags">Tags</string>
