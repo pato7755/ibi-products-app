@@ -46,6 +46,8 @@ class ProductViewModel @Inject constructor(
 
     val searchParams = MutableStateFlow(SearchParams())
 
+    private var isFavoriteToggling = false
+
     val products: Flow<PagingData<Product>> = searchParams
         .flatMapLatest { params ->
             getProductsUseCase(
@@ -103,12 +105,15 @@ class ProductViewModel @Inject constructor(
     }
 
     fun toggleFavorite(product: Product) {
+        if (isFavoriteToggling) return
+        isFavoriteToggling = true
         val isFavorite = _productState.value.favoriteIds.contains(product.id)
         viewModelScope.launch {
             withContext(ioDispatcher) {
                 if (isFavorite) removeFavoriteUseCase(product.id)
                 else addFavoriteUseCase(product.id)
             }
+            isFavoriteToggling = false
         }
     }
 

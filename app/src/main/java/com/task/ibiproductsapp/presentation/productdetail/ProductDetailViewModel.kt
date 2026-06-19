@@ -65,17 +65,14 @@ class ProductDetailViewModel @Inject constructor(
 
     fun toggleFavorite() {
         val product = _detailState.value.product ?: return
+        val isFavorite = _detailState.value.isFavorite
         viewModelScope.launch {
-            withContext(ioDispatcher) {
-                if (product.isFavorite) {
-                    removeFavoriteUseCase(product.id)
-                } else {
-                    addFavoriteUseCase(product.id)
-                }
+            val result = withContext(ioDispatcher) {
+                if (isFavorite) removeFavoriteUseCase(product.id)
+                else addFavoriteUseCase(product.id)
             }
-            // Optimistic update
-            _detailState.update { state ->
-                state.copy(product = state.product?.copy(isFavorite = !product.isFavorite))
+            if (result is NetworkResult.Error) {
+                _detailState.update { it.copy(errorMessage = result.message) }
             }
         }
     }
