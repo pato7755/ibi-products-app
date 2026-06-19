@@ -26,8 +26,8 @@ class FavoritesViewModel @Inject constructor(
     private val _favoritesState = MutableStateFlow(FavoritesState())
     val favoritesState = _favoritesState.asStateFlow()
 
-    // Holds the pending removal job so we can cancel it on undo
-    private var removalJob: Job? = null
+    // Holds the pending removal jobs so we can cancel them on undo
+    private val removalJobs = mutableMapOf<Int, Job>()
 
     init {
         observeFavorites()
@@ -43,12 +43,12 @@ class FavoritesViewModel @Inject constructor(
     }
 
     fun removeFavorite(productId: Int) {
-        removalJob?.cancel()
+        removalJobs[productId]?.cancel()
         _favoritesState.update {
             it.copy(pendingRemovalIds = it.pendingRemovalIds + productId)
         }
 
-        removalJob = viewModelScope.launch {
+        removalJobs[productId] = viewModelScope.launch {
             delay(4000)
             withContext(ioDispatcher) {
                 removeFavoriteUseCase(productId)
@@ -56,12 +56,15 @@ class FavoritesViewModel @Inject constructor(
             _favoritesState.update {
                 it.copy(pendingRemovalIds = it.pendingRemovalIds - productId)
             }
+            removalJobs.remove(productId)
         }
     }
 
-    fun undoRemove() {
-        removalJob?.cancel()
-        removalJob = null
-        _favoritesState.update { it.copy(pendingRemovalIds = emptySet()) }
+    fun undoRemove(productId: Int) {
+        removalJobs[productId]?.cancel()
+        removalJobs.remove(productId)
+        _favoritesState.update {
+            it.copy(pendingRemovalIds = it.pendingRemovalIds - productId)
+        }
     }
 }
