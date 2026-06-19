@@ -101,7 +101,7 @@ fun FavoritesScreen(
                                             duration = SnackbarDuration.Long
                                         )
                                         if (result == SnackbarResult.ActionPerformed) {
-                                            viewModel.undoRemove()
+                                            viewModel.undoRemove(product.id)
                                         }
                                     }
                                 }

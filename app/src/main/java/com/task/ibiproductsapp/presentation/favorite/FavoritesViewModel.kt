@@ -35,9 +35,16 @@ class FavoritesViewModel @Inject constructor(
 
     private fun observeFavorites() {
         viewModelScope.launch {
-            _favoritesState.update { it.copy(isLoading = true) }
             getFavoritesUseCase().collect { favorites ->
-                _favoritesState.update { it.copy(favorites = favorites, isLoading = false) }
+                _favoritesState.update { state ->
+                    val currentIds = favorites.map { it.id }.toSet()
+                    state.copy(
+                        favorites = favorites,
+                        isLoading = false,
+                        // Drop any pending IDs that Room confirms are already gone
+                        pendingRemovalIds = state.pendingRemovalIds.intersect(currentIds)
+                    )
+                }
             }
         }
     }
@@ -52,9 +59,6 @@ class FavoritesViewModel @Inject constructor(
             delay(4000)
             withContext(ioDispatcher) {
                 removeFavoriteUseCase(productId)
-            }
-            _favoritesState.update {
-                it.copy(pendingRemovalIds = it.pendingRemovalIds - productId)
             }
             removalJobs.remove(productId)
         }
